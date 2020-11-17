@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String query;
   List topAnimes = [];
   List topAiringAnimes = [];
 
@@ -83,10 +84,18 @@ class _HomeState extends State<Home> {
                   tag: 'search',
                   child: Material(
                     child: TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          query = value;
+                        });
+                      },
                       onEditingComplete: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Search()),
+                          MaterialPageRoute(
+                              builder: (context) => Search(
+                                    query: query,
+                                  )),
                         );
                       },
                       decoration: InputDecoration(
