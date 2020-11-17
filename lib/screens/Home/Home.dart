@@ -1,3 +1,4 @@
+import 'package:animeze/screens/Shared/Carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -10,10 +11,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List topAnimes = [];
-  List airingAnimes = [];
+  List topAiringAnimes = [];
 
   getTopAnimes() async {
-    var url = 'https://api.jikan.moe/v3/top/anime/1/bypopularity';
+    var url = 'https://api.jikan.moe/v3/top/anime/1/favorite';
     try {
       var response = await http.get(url);
       var jsonResponse = convert.jsonDecode(response.body);
@@ -25,10 +26,24 @@ class _HomeState extends State<Home> {
     }
   }
 
+  getTopAiringAnimes() async {
+    var url = 'https://api.jikan.moe/v3/top/anime/1/airing';
+    try {
+      var response = await http.get(url);
+      var jsonResponse = convert.jsonDecode(response.body);
+      setState(() {
+        topAiringAnimes = jsonResponse['top'];
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     getTopAnimes();
+    getTopAiringAnimes();
   }
 
   @override
@@ -46,47 +61,101 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Header(),
-              SizedBox(
-                height: 50,
-              ),
-              Text(
-                "Find Anime, Manga\nand more...",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(20),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  hintText: "Search",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    borderSide: BorderSide(color: Colors.white),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Header(),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  "Find Anime, Manga\nand more...",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(20),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    hintText: "Search",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
                 ),
-              )
-            ],
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Top Animes',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Text(
+                      "More",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.red),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Carousel(
+                  list: topAnimes,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Top Airing Animes',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Text(
+                      "More",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.red),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Carousel(
+                  list: topAiringAnimes,
+                )
+              ],
+            ),
           ),
         ),
       ),
