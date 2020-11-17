@@ -1,3 +1,4 @@
+import 'package:animeze/screens/Details/Details.dart';
 import 'package:animeze/screens/Shared/Content.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -91,11 +92,23 @@ class _SearchState extends State<Search> {
                 Expanded(
                   child: ListView.builder(
                       itemBuilder: (BuildContext context, var index) {
-                        return Content(
-                          imageUrl: results[index]['image_url'],
-                          score: results[index]['score'],
-                          startDate: results[index]['start_date'],
-                          title: results[index]['title'],
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Details(
+                                  id: results[index]['mal_id'],
+                                ),
+                              ),
+                            );
+                          },
+                          child: Content(
+                            imageUrl: results[index]['image_url'],
+                            score: results[index]['score'],
+                            startDate: results[index]['start_date'],
+                            title: results[index]['title'],
+                          ),
                         );
                       },
                       itemCount: results.isEmpty ? 0 : 10),
