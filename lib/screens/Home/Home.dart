@@ -1,5 +1,7 @@
-import 'package:animeze/screens/Home/Header.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+import 'package:animeze/screens/Home/Header.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,6 +9,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List topAnimes = [];
+  List airingAnimes = [];
+
+  getTopAnimes() async {
+    var url = 'https://api.jikan.moe/v3/top/anime/1/bypopularity';
+    try {
+      var response = await http.get(url);
+      var jsonResponse = convert.jsonDecode(response.body);
+      setState(() {
+        topAnimes = jsonResponse['top'];
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTopAnimes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
