@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 TextField(
                   decoration: InputDecoration(
