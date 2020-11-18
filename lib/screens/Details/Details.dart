@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:animeze/screens/Home/Header.dart';
+import 'package:animeze/screens/Shared/Carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -15,6 +14,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   String imageUrl;
+  List characters = [];
 
   getData() async {
     var url = 'https://api.jikan.moe/v3/anime/${widget.id}';
@@ -29,10 +29,24 @@ class _DetailsState extends State<Details> {
     }
   }
 
+  getCharacters() async {
+    var url = 'https://api.jikan.moe/v3/anime/${widget.id}/characters_staff';
+    try {
+      var response = await http.get(url);
+      var jsonResponse = convert.jsonDecode(response.body);
+      setState(() {
+        characters = jsonResponse['characters'];
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    getData();
+    // getData();
+    getCharacters();
   }
 
   @override
@@ -58,7 +72,7 @@ class _DetailsState extends State<Details> {
               top: 200,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height - 200,
                 child: Stack(
                   children: [
                     Positioned(
@@ -83,16 +97,12 @@ class _DetailsState extends State<Details> {
                             width: MediaQuery.of(context).size.width / 3,
                           ),
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height - 450,
+                        Expanded(
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            padding: EdgeInsets.all(20),
                             child: ListView(
                               padding: EdgeInsets.all(0),
                               children: [
-                                SizedBox(
-                                  height: 20,
-                                ),
                                 Text(
                                   "Bleach",
                                   textAlign: TextAlign.center,
@@ -208,6 +218,21 @@ class _DetailsState extends State<Details> {
                                 Text(
                                   "Ichigo Kurosaki is an ordinary high schooler—until his family is attacked by a Hollow, a corrupt spirit that seeks to devour human souls. It is then that he meets a Soul Reaper named Rukia Kuchiki, who gets injured while protecting Ichigo's family from the assailant. To save his family, Ichigo accepts Rukia's offer of taking her powers and becomes a Soul Reaper as a result. However, as Rukia is unable to regain her powers, Ichigo is given the daunting task of hunting down the Hollows that plague their town. However, he is not alone in his fight, as he is later joined by his friends—classmates Orihime Inoue, Yasutora Sado, and Uryuu Ishida—who each have their own unique abilities. As Ichigo and his comrades get used to their new duties and support each other on and off the battlefield, the young Soul Reaper soon learns that the Hollows are not the only real threat to the human world. [Written by MAL Rewrite]",
                                   style: TextStyle(fontSize: 15),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text(
+                                  "Characters",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Carousel(
+                                  list: characters,
                                 ),
                               ],
                             ),
