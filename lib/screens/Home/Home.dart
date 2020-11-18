@@ -69,7 +69,12 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Header(),
+                Header(
+                  leftIconName: "menu",
+                  title: "ANIMEZE",
+                  rightIconName: "",
+                  isBackgroundOn: true,
+                ),
                 SizedBox(
                   height: 50,
                 ),

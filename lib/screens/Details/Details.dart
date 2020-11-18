@@ -67,7 +67,12 @@ class _DetailsState extends State<Details> {
             Positioned(
                 width: MediaQuery.of(context).size.width,
                 top: 50,
-                child: Header()),
+                child: Header(
+                  leftIconName: "arrow_back",
+                  title: "",
+                  rightIconName: "favorite_border",
+                  isBackgroundOn: false,
+                )),
             Positioned(
               top: 200,
               child: Container(
