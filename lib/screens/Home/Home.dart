@@ -148,6 +148,7 @@ class _HomeState extends State<Home> {
                 ),
                 Carousel(
                   list: topAnimes,
+                  height: 300,
                 ),
                 SizedBox(
                   height: 30,
@@ -174,6 +175,7 @@ class _HomeState extends State<Home> {
                 ),
                 Carousel(
                   list: topAiringAnimes,
+                  height: 300,
                 )
               ],
             ),

@@ -13,6 +13,7 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
+  var data;
   String imageUrl;
   List characters = [];
 
@@ -22,7 +23,7 @@ class _DetailsState extends State<Details> {
       var response = await http.get(url);
       var jsonResponse = convert.jsonDecode(response.body);
       setState(() {
-        imageUrl = jsonResponse['image_url'];
+        data = jsonResponse;
       });
     } catch (e) {
       print(e);
@@ -45,7 +46,7 @@ class _DetailsState extends State<Details> {
   @override
   void initState() {
     super.initState();
-    // getData();
+    getData();
     getCharacters();
   }
 
@@ -58,8 +59,7 @@ class _DetailsState extends State<Details> {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            Image.network(
-                'https://cdn.myanimelist.net/images/anime/3/40451.jpg',
+            Image.network(data['image_url'],
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.contain,
                 color: Color.fromRGBO(255, 255, 255, 0.3),
@@ -93,7 +93,7 @@ class _DetailsState extends State<Details> {
                         ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           child: Image.network(
-                            'https://cdn.myanimelist.net/images/anime/3/40451.jpg',
+                            data['image_url'],
                             width: MediaQuery.of(context).size.width / 3,
                           ),
                         ),
@@ -104,7 +104,7 @@ class _DetailsState extends State<Details> {
                               padding: EdgeInsets.all(0),
                               children: [
                                 Text(
-                                  "Bleach",
+                                  data['title'],
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
@@ -115,7 +115,7 @@ class _DetailsState extends State<Details> {
                                   height: 5,
                                 ),
                                 Text(
-                                  "7.8",
+                                  data['score'].toString(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
@@ -177,25 +177,25 @@ class _DetailsState extends State<Details> {
                                     ]),
                                     TableRow(children: [
                                       Text(
-                                        '24',
+                                        data['duration'],
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'False',
+                                        data['airing'] ? "Yes" : "No",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'Anime',
+                                        data['type'],
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'PG-13',
+                                        data['rating'],
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
@@ -216,7 +216,7 @@ class _DetailsState extends State<Details> {
                                   height: 10,
                                 ),
                                 Text(
-                                  "Ichigo Kurosaki is an ordinary high schooler—until his family is attacked by a Hollow, a corrupt spirit that seeks to devour human souls. It is then that he meets a Soul Reaper named Rukia Kuchiki, who gets injured while protecting Ichigo's family from the assailant. To save his family, Ichigo accepts Rukia's offer of taking her powers and becomes a Soul Reaper as a result. However, as Rukia is unable to regain her powers, Ichigo is given the daunting task of hunting down the Hollows that plague their town. However, he is not alone in his fight, as he is later joined by his friends—classmates Orihime Inoue, Yasutora Sado, and Uryuu Ishida—who each have their own unique abilities. As Ichigo and his comrades get used to their new duties and support each other on and off the battlefield, the young Soul Reaper soon learns that the Hollows are not the only real threat to the human world. [Written by MAL Rewrite]",
+                                  data['synopsis'],
                                   style: TextStyle(fontSize: 15),
                                 ),
                                 SizedBox(
@@ -233,6 +233,7 @@ class _DetailsState extends State<Details> {
                                 ),
                                 Carousel(
                                   list: characters,
+                                  height: 200,
                                 ),
                               ],
                             ),

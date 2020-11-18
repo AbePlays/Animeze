@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class Carousel extends StatefulWidget {
   final List list;
-  Carousel({this.list});
+  final double height;
+  Carousel({this.list, this.height});
 
   @override
   _CarouselState createState() => _CarouselState();
@@ -12,7 +13,7 @@ class _CarouselState extends State<Carousel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: widget.height,
       child: ListView.separated(
           separatorBuilder: (BuildContext context, var index) {
             return SizedBox(
