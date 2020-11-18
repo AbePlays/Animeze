@@ -1,3 +1,4 @@
+import 'package:animeze/screens/Details/CharacterDetails.dart';
 import 'package:flutter/material.dart';
 
 class Carousel extends StatefulWidget {
@@ -23,9 +24,19 @@ class _CarouselState extends State<Carousel> {
           scrollDirection: Axis.horizontal,
           itemCount: widget.list.isEmpty ? 0 : 5,
           itemBuilder: (BuildContext context, var index) {
-            return ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              child: Image.network(widget.list[index]['image_url']),
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CharacterDetails(),
+                  ),
+                );
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                child: Image.network(widget.list[index]['image_url']),
+              ),
             );
           }),
     );
