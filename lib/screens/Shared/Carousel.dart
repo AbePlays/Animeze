@@ -29,7 +29,9 @@ class _CarouselState extends State<Carousel> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CharacterDetails(),
+                    builder: (context) => CharacterDetails(
+                      id: widget.list[index]['mal_id'],
+                    ),
                   ),
                 );
               },
