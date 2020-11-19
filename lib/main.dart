@@ -1,5 +1,4 @@
 import 'package:animeze/screens/Home/Home.dart';
-import 'package:animeze/screens/Search/Search.dart';
 import 'package:flutter/material.dart';
 
 void main() {

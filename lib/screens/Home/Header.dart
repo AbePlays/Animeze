@@ -50,7 +50,7 @@ class _HeaderState extends State<Header> {
                 ),
               )
             : CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.transparent,
               )
       ],
     );
