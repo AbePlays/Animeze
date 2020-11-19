@@ -239,6 +239,8 @@ class _DetailsState extends State<Details> {
                                 Carousel(
                                   list: characters,
                                   height: 200,
+                                  width: 130,
+                                  toCharacterDetails: true,
                                 ),
                               ],
                             ),

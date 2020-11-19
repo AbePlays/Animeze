@@ -1,10 +1,13 @@
 import 'package:animeze/screens/Details/CharacterDetails.dart';
+import 'package:animeze/screens/Details/Details.dart';
 import 'package:flutter/material.dart';
 
 class Carousel extends StatefulWidget {
   final List list;
   final double height;
-  Carousel({this.list, this.height});
+  final double width;
+  final bool toCharacterDetails;
+  Carousel({this.list, this.height, this.width, this.toCharacterDetails});
 
   @override
   _CarouselState createState() => _CarouselState();
@@ -29,15 +32,23 @@ class _CarouselState extends State<Carousel> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CharacterDetails(
-                      id: widget.list[index]['mal_id'],
-                    ),
+                    builder: (context) => widget.toCharacterDetails
+                        ? CharacterDetails(
+                            id: widget.list[index]['mal_id'],
+                          )
+                        : Details(
+                            id: widget.list[index]['mal_id'],
+                          ),
                   ),
                 );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
-                child: Image.network(widget.list[index]['image_url']),
+                child: Image.network(
+                  widget.list[index]['image_url'],
+                  fit: BoxFit.fill,
+                  width: widget.width,
+                ),
               ),
             );
           }),

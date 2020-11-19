@@ -44,8 +44,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // getTopAnimes();
-    // getTopAiringAnimes();
+    getTopAnimes();
+    getTopAiringAnimes();
   }
 
   @override
@@ -98,9 +98,10 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Search(
-                                    query: query,
-                                  )),
+                            builder: (context) => Search(
+                              query: query,
+                            ),
+                          ),
                         );
                       },
                       decoration: InputDecoration(
@@ -142,9 +143,10 @@ class _HomeState extends State<Home> {
                     Text(
                       "More",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: Colors.red),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.red,
+                      ),
                     )
                   ],
                 ),
@@ -154,6 +156,8 @@ class _HomeState extends State<Home> {
                 Carousel(
                   list: topAnimes,
                   height: 300,
+                  width: 200,
+                  toCharacterDetails: false,
                 ),
                 SizedBox(
                   height: 30,
@@ -169,9 +173,10 @@ class _HomeState extends State<Home> {
                     Text(
                       "More",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: Colors.red),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.red,
+                      ),
                     )
                   ],
                 ),
@@ -181,6 +186,8 @@ class _HomeState extends State<Home> {
                 Carousel(
                   list: topAiringAnimes,
                   height: 300,
+                  width: 200,
+                  toCharacterDetails: false,
                 )
               ],
             ),
