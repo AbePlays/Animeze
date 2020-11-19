@@ -2,8 +2,18 @@ class Anime {
   final int id;
   final String imageUrl;
   final String title;
-  final int score;
-  final String dateRelease;
+  final double score;
+  final String dateReleased;
 
-  Anime({this.id, this.imageUrl, this.title, this.score, this.dateRelease});
+  Anime({this.id, this.imageUrl, this.title, this.score, this.dateReleased});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'imageUrl': imageUrl,
+      'title': title,
+      'score': score,
+      "dateReleased": dateReleased
+    };
+  }
 }

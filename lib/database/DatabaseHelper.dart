@@ -34,14 +34,12 @@ class DatabaseHelper {
   }
 
   Future onCreate(Database db, int version) async {
-    await db.execute('''
-          CREATE TABLE $table (
-            $id INTEGER PRIMARY KEY,
-            $imageUrl TEXT NOT NULL,
-            $title TEXT NOT NULL
-            $score REAL NOT NULL
-            $dateReleased TEXT NOT NULL
-          )
-          ''');
+    await db.execute(
+        "CREATE TABLE $table ($id INTEGER PRIMARY KEY, $imageUrl TEXT, $title TEXT, $score REAL, $dateReleased TEXT)");
+  }
+
+  Future<int> insert(Map<String, dynamic> row) async {
+    Database db = await instance.database;
+    return await db.insert(table, row);
   }
 }

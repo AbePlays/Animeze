@@ -1,9 +1,11 @@
+import 'package:animeze/database/DatabaseHelper.dart';
 import 'package:animeze/screens/Shared/Header.dart';
 import 'package:animeze/screens/Shared/Carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:animeze/model/AnimeModel.dart';
 
 class Details extends StatefulWidget {
   final int id;
@@ -15,10 +17,18 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
+  Anime anime;
   bool isLoading;
   var data;
   String imageUrl;
   List characters = [];
+
+  final dbHelper = DatabaseHelper.instance;
+
+  saveToDatabase() async {
+    final id = await dbHelper.insert(anime.toMap());
+    print("This is the ID = $id");
+  }
 
   getData() async {
     isLoading = true;
@@ -28,6 +38,13 @@ class _DetailsState extends State<Details> {
       var jsonResponse = convert.jsonDecode(response.body);
       setState(() {
         data = jsonResponse;
+        anime = new Anime(
+            id: widget.id,
+            imageUrl: data['image_url'],
+            title: data['title'],
+            score: data['score'],
+            dateReleased: data['aired']['from'].toString().substring(0, 10));
+        print(anime);
         isLoading = false;
       });
     } catch (e) {
@@ -87,6 +104,7 @@ class _DetailsState extends State<Details> {
                           title: "",
                           rightIconName: "favorite_border",
                           isBackgroundOn: false,
+                          callbackFunction: saveToDatabase,
                         )),
                     Positioned(
                       top: 200,

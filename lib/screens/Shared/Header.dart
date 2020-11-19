@@ -5,8 +5,13 @@ class Header extends StatefulWidget {
   final String title;
   final String rightIconName;
   final bool isBackgroundOn;
+  final Function callbackFunction;
   Header(
-      {this.leftIconName, this.title, this.rightIconName, this.isBackgroundOn});
+      {this.leftIconName,
+      this.title,
+      this.rightIconName,
+      this.isBackgroundOn,
+      this.callbackFunction});
 
   @override
   _HeaderState createState() => _HeaderState();
@@ -45,17 +50,21 @@ class _HeaderState extends State<Header> {
               )
             : SizedBox.shrink(),
         widget.rightIconName.isNotEmpty
-            ? CircleAvatar(
-                backgroundColor: widget.isBackgroundOn
-                    ? Colors.grey[200]
-                    : Colors.transparent,
-                child: Text(
-                  widget.rightIconName,
-                  style: TextStyle(
-                      fontFamily: 'MaterialIcons',
-                      fontSize: 25,
-                      color:
-                          widget.isBackgroundOn ? Colors.black : Colors.white),
+            ? GestureDetector(
+                onTap: widget.callbackFunction,
+                child: CircleAvatar(
+                  backgroundColor: widget.isBackgroundOn
+                      ? Colors.grey[200]
+                      : Colors.transparent,
+                  child: Text(
+                    widget.rightIconName,
+                    style: TextStyle(
+                        fontFamily: 'MaterialIcons',
+                        fontSize: 25,
+                        color: widget.isBackgroundOn
+                            ? Colors.black
+                            : Colors.white),
+                  ),
                 ),
               )
             : CircleAvatar(
