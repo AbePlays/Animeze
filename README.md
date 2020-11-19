@@ -1,4 +1,4 @@
-# animeze
+# Animeze
 
 ## Screenshot
 
@@ -10,7 +10,23 @@
   <img src="screenshots/CharacterDetails.png" width="200">
 </p>
 
+## Overview
+
+Animeze is an app which shows information regarding Animes. Browse through the list of all the animes. The app incorporates:
+
+- Flutter
+- Jikan API
+- Flutter Spinkit
+
+Future updates will include : 
+
+- Ability to mark anime(s) favorite
+- Connecting the app with a backend
+- Add a Dark Mode
+
 ## Getting Started
+
+> This app is not available on the App Store.
 
 This project is a starting point for a Flutter application.
 
