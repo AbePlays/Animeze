@@ -7,7 +7,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Details extends StatefulWidget {
   final int id;
-  Details({this.id});
+  final String episodes;
+  Details({this.id, this.episodes});
 
   @override
   _DetailsState createState() => _DetailsState();
@@ -124,12 +125,12 @@ class _DetailsState extends State<Details> {
     return Column(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          child: Image.network(
-            data['image_url'],
-            width: MediaQuery.of(context).size.width / 3,
-          ),
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            child: FadeInImage.assetNetwork(
+              placeholder: 'assets/images/placeholder.png',
+              image: data['image_url'],
+              width: MediaQuery.of(context).size.width / 3,
+            )),
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(20),
@@ -140,17 +141,19 @@ class _DetailsState extends State<Details> {
                   data['title'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    height: 1,
                     fontWeight: FontWeight.w700,
                     fontSize: 35,
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 Text(
                   data['score'].toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.w900,
                       fontSize: 40,
                       color: Colors.grey),
@@ -186,7 +189,7 @@ class _DetailsState extends State<Details> {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Rated',
+                        'Episodes',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
@@ -210,7 +213,7 @@ class _DetailsState extends State<Details> {
                     ]),
                     TableRow(children: [
                       Text(
-                        data['duration'],
+                        data['duration'].toString().replaceAll('per', '/'),
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -225,8 +228,9 @@ class _DetailsState extends State<Details> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        data['rating'],
+                        widget.episodes,
                         textAlign: TextAlign.center,
+                        maxLines: 1,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ])

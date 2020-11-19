@@ -80,6 +80,8 @@ class _SearchState extends State<Search> {
                                 MaterialPageRoute(
                                   builder: (context) => Details(
                                     id: results[index]['mal_id'],
+                                    episodes:
+                                        results[index]['episodes'].toString(),
                                   ),
                                 ),
                               );

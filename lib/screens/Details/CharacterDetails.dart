@@ -68,14 +68,15 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                         padding: EdgeInsets.all(0),
                         children: [
                           Center(
-                            child: Container(
-                              width: 200.0,
-                              height: 200.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage("${data['image_url']}"),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Container(
+                                width: 200.0,
+                                height: 200.0,
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/images/placeholder.png',
+                                  image: data['image_url'],
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),

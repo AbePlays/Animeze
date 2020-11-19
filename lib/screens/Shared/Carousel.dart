@@ -38,14 +38,16 @@ class _CarouselState extends State<Carousel> {
                           )
                         : Details(
                             id: widget.list[index]['mal_id'],
+                            episodes: widget.list[index]['episodes'].toString(),
                           ),
                   ),
                 );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
-                child: Image.network(
-                  widget.list[index]['image_url'],
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/placeholder.png',
+                  image: widget.list[index]['image_url'],
                   fit: BoxFit.fill,
                   width: widget.width,
                 ),

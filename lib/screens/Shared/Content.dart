@@ -72,12 +72,12 @@ class _ContentState extends State<Content> {
             bottom: 30,
             left: 30,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                widget.imageUrl,
-                width: 100,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(10),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/placeholder.png',
+                  image: widget.imageUrl,
+                  width: 100,
+                )),
           ),
         ],
       ),
