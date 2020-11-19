@@ -1,6 +1,14 @@
 # animeze
 
-A new Flutter project.
+## Screenshot
+
+<p align="center">
+  <img src="screenshots/Home.png" width="200">
+  <img src="screenshots/Search.png" width="200">
+  <img src="screenshots/AnimeDetails.png" width="200">
+  <img src="screenshots/AnimeDetails2.png" width="200">
+  <img src="screenshots/CharacterDetails.png" width="200">
+</p>
 
 ## Getting Started
 
