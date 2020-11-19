@@ -108,174 +108,7 @@ class _DetailsState extends State<Details> {
                                 ),
                               ),
                             ),
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                  child: Image.network(
-                                    data['image_url'],
-                                    width:
-                                        MediaQuery.of(context).size.width / 3,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(20),
-                                    child: ListView(
-                                      padding: EdgeInsets.all(0),
-                                      children: [
-                                        Text(
-                                          data['title'],
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 35,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          data['score'].toString(),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 40,
-                                              color: Colors.grey),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Table(
-                                          children: [
-                                            TableRow(children: [
-                                              Text(
-                                                'Length',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                'Airing',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                'Type',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                'Rated',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ]),
-                                            TableRow(children: [
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              )
-                                            ]),
-                                            TableRow(children: [
-                                              Text(
-                                                data['duration'],
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                data['airing'] ? "Yes" : "No",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                data['type'],
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                data['rating'],
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ])
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Text(
-                                          "Storyline",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          data['synopsis'],
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Text(
-                                          "Characters",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Carousel(
-                                          list: characters,
-                                          height: 200,
-                                          width: 130,
-                                          toCharacterDetails: true,
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                            buildContent(context),
                           ],
                         ),
                       ),
@@ -284,6 +117,159 @@ class _DetailsState extends State<Details> {
                 ),
               ),
       ),
+    );
+  }
+
+  Column buildContent(BuildContext context) {
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          child: Image.network(
+            data['image_url'],
+            width: MediaQuery.of(context).size.width / 3,
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: ListView(
+              padding: EdgeInsets.all(0),
+              children: [
+                Text(
+                  data['title'],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 35,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  data['score'].toString(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 40,
+                      color: Colors.grey),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Table(
+                  children: [
+                    TableRow(children: [
+                      Text(
+                        'Length',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Airing',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Type',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Rated',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ]),
+                    TableRow(children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ]),
+                    TableRow(children: [
+                      Text(
+                        data['duration'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        data['airing'] ? "Yes" : "No",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        data['type'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        data['rating'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ])
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Storyline",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  data['synopsis'],
+                  style: TextStyle(fontSize: 15),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Characters",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Carousel(
+                  list: characters,
+                  height: 200,
+                  width: 130,
+                  toCharacterDetails: true,
+                ),
+                SizedBox(
+                  height: 20,
+                )
+              ],
+            ),
+          ),
+        )
+      ],
     );
   }
 }

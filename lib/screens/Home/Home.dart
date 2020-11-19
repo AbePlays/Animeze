@@ -85,50 +85,7 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: 30,
                 ),
-                Hero(
-                  tag: 'search',
-                  child: Material(
-                    child: TextField(
-                      onChanged: (value) {
-                        setState(() {
-                          query = value;
-                        });
-                      },
-                      onEditingComplete: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Search(
-                              query: query,
-                            ),
-                          ),
-                        );
-                      },
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(20),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.black,
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: "Search",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                buildSearch(context),
                 SizedBox(
                   height: 30,
                 ),
@@ -190,6 +147,53 @@ class _HomeState extends State<Home> {
                   toCharacterDetails: false,
                 )
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Hero buildSearch(BuildContext context) {
+    return Hero(
+      tag: 'search',
+      child: Material(
+        child: TextField(
+          onChanged: (value) {
+            setState(() {
+              query = value;
+            });
+          },
+          onEditingComplete: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Search(
+                  query: query,
+                ),
+              ),
+            );
+          },
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(20),
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            filled: true,
+            fillColor: Colors.grey[200],
+            hintText: "Search",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: Colors.white),
             ),
           ),
         ),

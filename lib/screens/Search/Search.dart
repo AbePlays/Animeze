@@ -61,43 +61,7 @@ class _SearchState extends State<Search> {
               SizedBox(
                 height: 20,
               ),
-              Hero(
-                tag: 'search',
-                child: Material(
-                  child: TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        searchText = value;
-                      });
-                    },
-                    onEditingComplete: () {
-                      handleSearch(searchText);
-                    },
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(20),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "Search",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              buildSearch(),
               SizedBox(
                 height: 20,
               ),
@@ -132,6 +96,46 @@ class _SearchState extends State<Search> {
                       ),
                     )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Hero buildSearch() {
+    return Hero(
+      tag: 'search',
+      child: Material(
+        child: TextField(
+          onChanged: (value) {
+            setState(() {
+              searchText = value;
+            });
+          },
+          onEditingComplete: () {
+            handleSearch(searchText);
+          },
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(20),
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            hintText: "Search",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderSide: BorderSide(color: Colors.white),
+            ),
           ),
         ),
       ),
