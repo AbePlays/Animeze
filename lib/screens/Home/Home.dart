@@ -54,11 +54,49 @@ class _HomeState extends State<Home> {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+              ),
+              child: Center(
+                child: Text(
+                  'ANIMEZE',
+                  style: TextStyle(
+                    letterSpacing: 5,
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("App Settings"),
+            ),
+            Divider(
+              height: 0,
+              indent: 15,
+              endIndent: 15,
+            ),
+            ListTile(
+              leading: Icon(Icons.help),
+              title: Text("Help & Support"),
+            ),
+            Divider(
+              height: 0,
+              indent: 15,
+              endIndent: 15,
+            ),
             ListTile(
               leading: Icon(Icons.wb_sunny),
-              title: Text("Dark Mode"),
+              title: Text("Turn On Dark Mode"),
               trailing: Switch(value: false, onChanged: null),
-            )
+            ),
+            Divider(
+              height: 0,
+              indent: 15,
+              endIndent: 15,
+            ),
           ],
         ),
       ),
