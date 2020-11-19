@@ -100,7 +100,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 20,
                           ),
                           names.length > 0
                               ? Wrap(
@@ -120,7 +120,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                                       fontSize: 15),
                                 ),
                           SizedBox(
-                            height: 10,
+                            height: 20,
                           ),
                           Text(
                             "About",
@@ -131,7 +131,8 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                             height: 20,
                           ),
                           Text(
-                            data['about'].replaceAll("\\n", "\n"),
+                            (data['about'].replaceAll("\\n", "\n"))
+                                .replaceAll('\n\r\n\n\r', '\n'),
                             style: TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 15),
                           )
