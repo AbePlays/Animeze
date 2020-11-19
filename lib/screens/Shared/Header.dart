@@ -18,15 +18,24 @@ class _HeaderState extends State<Header> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CircleAvatar(
-          backgroundColor:
-              widget.isBackgroundOn ? Colors.grey[200] : Colors.transparent,
-          child: Text(
-            widget.leftIconName,
-            style: TextStyle(
-                fontFamily: 'MaterialIcons',
-                fontSize: 25,
-                color: widget.isBackgroundOn ? Colors.black : Colors.white),
+        GestureDetector(
+          onTap: () {
+            if (widget.leftIconName == 'arrow_back') {
+              Navigator.pop(context);
+            } else {
+              Scaffold.of(context).openDrawer();
+            }
+          },
+          child: CircleAvatar(
+            backgroundColor:
+                widget.isBackgroundOn ? Colors.grey[200] : Colors.transparent,
+            child: Text(
+              widget.leftIconName,
+              style: TextStyle(
+                  fontFamily: 'MaterialIcons',
+                  fontSize: 25,
+                  color: widget.isBackgroundOn ? Colors.black : Colors.white),
+            ),
           ),
         ),
         widget.title.isNotEmpty
