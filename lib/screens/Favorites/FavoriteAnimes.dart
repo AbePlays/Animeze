@@ -1,3 +1,6 @@
+import 'package:animeze/database/DatabaseHelper.dart';
+import 'package:animeze/model/AnimeModel.dart';
+import 'package:animeze/screens/Shared/Header.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteAnimes extends StatefulWidget {
@@ -6,12 +9,79 @@ class FavoriteAnimes extends StatefulWidget {
 }
 
 class _FavoriteAnimesState extends State<FavoriteAnimes> {
+  final dbHelper = DatabaseHelper.instance;
+  List<Anime> savedData = [];
+  bool showMessage = true;
+
+  getData() async {
+    var length = await dbHelper.numberOfItems();
+    if (length == 0) {
+      setState(() {
+        showMessage = true;
+      });
+    } else {
+      var data = await dbHelper.queryAllRows();
+      print(data);
+      setState(
+        () {
+          showMessage = false;
+          savedData = List.generate(
+            data.length,
+            (index) => Anime(
+              id: data[index]['id'],
+              imageUrl: data[index]['imageUrl'],
+              title: data[index]['title'],
+              score: data[index]['score'],
+              dateReleased: data[index]['dateReleased'],
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  deleteItem(id) async {
+    await dbHelper.delete(5114);
+    getData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Favs"),
+        body: SafeArea(
+      child: Container(
+        padding: EdgeInsets.all(20),
+        color: Colors.grey[200],
+        child: Column(
+          children: [
+            Header(
+              leftIconName: "arrow_back",
+              title: "ANIMEZE",
+              rightIconName: "",
+              isBackgroundOn: true,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            showMessage
+                ? Text("No Favorites Found :(")
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount: savedData.length,
+                      itemBuilder: (BuildContext context, var index) {
+                        return Text(savedData[index].title);
+                      },
+                    ),
+                  )
+          ],
+        ),
       ),
-    );
+    ));
   }
 }
