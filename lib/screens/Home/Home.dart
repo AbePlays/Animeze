@@ -1,3 +1,4 @@
+import 'package:animeze/screens/Favorites/FavoriteAnimes.dart';
 import 'package:animeze/screens/Search/Search.dart';
 import 'package:animeze/screens/Shared/Carousel.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,23 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FavoriteAnimes()),
+                );
+              },
+              child: ListTile(
+                leading: Icon(Icons.stars),
+                title: Text("Favorite Animes"),
+              ),
+            ),
+            Divider(
+              height: 0,
+              indent: 15,
+              endIndent: 15,
             ),
             ListTile(
               leading: Icon(Icons.settings),
