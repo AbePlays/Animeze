@@ -54,7 +54,7 @@ class _SearchState extends State<Search> {
             children: [
               Header(
                 leftIconName: "arrow_back",
-                title: "",
+                title: "ANIMEZE",
                 rightIconName: "",
                 isBackgroundOn: true,
               ),
