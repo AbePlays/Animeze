@@ -72,6 +72,7 @@ class _HomeState extends State<Home> {
             ),
             GestureDetector(
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => FavoriteAnimes()),

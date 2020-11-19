@@ -19,15 +19,18 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   Anime anime;
   bool isLoading;
-  var data;
+  Map data;
   String imageUrl;
   List characters = [];
 
   final dbHelper = DatabaseHelper.instance;
 
   saveToDatabase() async {
-    final id = await dbHelper.insert(anime.toMap());
-    print("This is the ID = $id");
+    try {
+      await dbHelper.insert(anime.toMap());
+    } catch (e) {
+      print(e);
+    }
   }
 
   getData() async {
@@ -44,7 +47,6 @@ class _DetailsState extends State<Details> {
             title: data['title'],
             score: data['score'],
             dateReleased: data['aired']['from'].toString().substring(0, 10));
-        print(anime);
         isLoading = false;
       });
     } catch (e) {
