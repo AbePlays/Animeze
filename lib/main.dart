@@ -10,10 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Animeze',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: ThemeData(fontFamily: 'Poppins'),
       home: Home(),
     );
   }
