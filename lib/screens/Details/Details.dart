@@ -265,6 +265,7 @@ class _DetailsState extends State<Details> {
                   height: 200,
                   width: 130,
                   toCharacterDetails: true,
+                  shouldLimit: false,
                 ),
                 SizedBox(
                   height: 20,

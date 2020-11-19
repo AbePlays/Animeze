@@ -115,6 +115,7 @@ class _HomeState extends State<Home> {
                   height: 300,
                   width: 200,
                   toCharacterDetails: false,
+                  shouldLimit: true,
                 ),
                 SizedBox(
                   height: 30,
@@ -145,6 +146,7 @@ class _HomeState extends State<Home> {
                   height: 300,
                   width: 200,
                   toCharacterDetails: false,
+                  shouldLimit: true,
                 )
               ],
             ),

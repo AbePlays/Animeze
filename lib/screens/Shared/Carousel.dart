@@ -7,7 +7,13 @@ class Carousel extends StatefulWidget {
   final double height;
   final double width;
   final bool toCharacterDetails;
-  Carousel({this.list, this.height, this.width, this.toCharacterDetails});
+  final bool shouldLimit;
+  Carousel(
+      {this.list,
+      this.height,
+      this.width,
+      this.toCharacterDetails,
+      this.shouldLimit});
 
   @override
   _CarouselState createState() => _CarouselState();
@@ -25,7 +31,9 @@ class _CarouselState extends State<Carousel> {
             );
           },
           scrollDirection: Axis.horizontal,
-          itemCount: widget.list.isEmpty ? 0 : 5,
+          itemCount: widget.shouldLimit
+              ? (widget.list.length > 5 ? 5 : widget.list.length)
+              : widget.list.length,
           itemBuilder: (BuildContext context, var index) {
             return GestureDetector(
               onTap: () {
