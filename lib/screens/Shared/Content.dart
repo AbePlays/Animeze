@@ -31,7 +31,9 @@ class _ContentState extends State<Content> {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 15),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15,
+                    ),
                     width: MediaQuery.of(context).size.width * .9 - 150,
                     child: SingleChildScrollView(
                       child: Column(
@@ -39,6 +41,8 @@ class _ContentState extends State<Content> {
                         children: [
                           Text(
                             widget.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),

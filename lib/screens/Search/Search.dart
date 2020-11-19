@@ -1,4 +1,4 @@
-import 'package:animeze/screens/Home/Header.dart';
+import 'package:animeze/screens/Shared/Header.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;

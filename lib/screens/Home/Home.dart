@@ -3,7 +3,7 @@ import 'package:animeze/screens/Shared/Carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'package:animeze/screens/Home/Header.dart';
+import 'package:animeze/screens/Shared/Header.dart';
 
 class Home extends StatefulWidget {
   @override
