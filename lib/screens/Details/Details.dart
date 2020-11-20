@@ -1,4 +1,5 @@
 import 'package:animeze/database/DatabaseHelper.dart';
+import 'package:animeze/provider/DataProvider.dart';
 import 'package:animeze/screens/Shared/Header.dart';
 import 'package:animeze/screens/Shared/Carousel.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:animeze/model/AnimeModel.dart';
+import 'package:provider/provider.dart';
 
 class Details extends StatefulWidget {
   final int id;
@@ -25,12 +27,8 @@ class _DetailsState extends State<Details> {
 
   final dbHelper = DatabaseHelper.instance;
 
-  saveToDatabase() async {
-    try {
-      await dbHelper.insert(anime.toMap());
-    } catch (e) {
-      print(e);
-    }
+  saveToDatabase() {
+    Provider.of<DataProvider>(context, listen: false).insertToDb(anime);
   }
 
   getData() async {

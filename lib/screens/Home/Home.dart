@@ -1,3 +1,4 @@
+import 'package:animeze/provider/DataProvider.dart';
 import 'package:animeze/screens/Favorites/FavoriteAnimes.dart';
 import 'package:animeze/screens/Search/Search.dart';
 import 'package:animeze/screens/Shared/Carousel.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:animeze/screens/Shared/Header.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -45,6 +47,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    Provider.of<DataProvider>(context, listen: false).initProviderData();
     getTopAnimes();
     getTopAiringAnimes();
   }
