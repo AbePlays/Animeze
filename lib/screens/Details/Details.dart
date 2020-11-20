@@ -20,6 +20,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   Anime anime;
+  bool isFav = false;
   bool isLoading;
   Map data;
   String imageUrl;
@@ -31,20 +32,38 @@ class _DetailsState extends State<Details> {
     Provider.of<DataProvider>(context, listen: false).insertToDb(anime);
   }
 
+  deleteFromDatabase() {
+    Provider.of<DataProvider>(context, listen: false).deleteFromDb(anime.id);
+  }
+
   getData() async {
     isLoading = true;
     var url = 'https://api.jikan.moe/v3/anime/${widget.id}';
     try {
       var response = await http.get(url);
       var jsonResponse = convert.jsonDecode(response.body);
+
+      List<Anime> animeList =
+          Provider.of<DataProvider>(context, listen: false).anime;
+
       setState(() {
         data = jsonResponse;
+
         anime = new Anime(
-            id: widget.id,
-            imageUrl: data['image_url'],
-            title: data['title'],
-            score: data['score'],
-            dateReleased: data['aired']['from'].toString().substring(0, 10));
+          id: widget.id,
+          imageUrl: data['image_url'],
+          title: data['title'],
+          score: data['score'],
+          dateReleased: data['aired']['from'].toString().substring(0, 10),
+        );
+
+        for (var item in animeList) {
+          if (item.id == anime.id) {
+            isFav = true;
+            break;
+          }
+        }
+
         isLoading = false;
       });
     } catch (e) {
@@ -102,9 +121,10 @@ class _DetailsState extends State<Details> {
                         child: Header(
                           leftIconName: "arrow_back",
                           title: "",
-                          rightIconName: "favorite_border",
+                          rightIconName: isFav ? "favorite" : "favorite_border",
                           isBackgroundOn: false,
-                          callbackFunction: saveToDatabase,
+                          callbackFunction:
+                              isFav ? deleteFromDatabase : saveToDatabase,
                         )),
                     Positioned(
                       top: 200,

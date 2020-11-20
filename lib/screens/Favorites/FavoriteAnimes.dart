@@ -14,9 +14,9 @@ class _FavoriteAnimesState extends State<FavoriteAnimes> {
   List<Anime> savedData = [];
   bool showMessage = true;
 
-  getData() async {
+  getData() {
     int length =
-        await Provider.of<DataProvider>(context, listen: false).currentSize();
+        Provider.of<DataProvider>(context, listen: false).currentSize();
     if (length == 0) {
       setState(() {
         showMessage = true;

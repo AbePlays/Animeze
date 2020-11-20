@@ -20,7 +20,6 @@ class DataProvider extends ChangeNotifier {
         dateReleased: data[index]['dateReleased'],
       ),
     );
-    print("data loaded!");
   }
 
   void insertToDb(Anime anime) async {
@@ -39,6 +38,7 @@ class DataProvider extends ChangeNotifier {
   void deleteFromDb(int id) async {
     try {
       await dbHelper.delete(id);
+      anime.removeWhere((item) => item.id == id);
     } catch (e) {
       print(e);
     }
