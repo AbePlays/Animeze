@@ -6,8 +6,6 @@ class DataProvider extends ChangeNotifier {
   List<Anime> anime = [];
   final dbHelper = DatabaseHelper.instance;
 
-  List<Anime> get currentAnimeIds => anime;
-
   void initProviderData() async {
     var data = await dbHelper.queryAllRows();
     anime = List.generate(

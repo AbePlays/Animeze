@@ -30,10 +30,16 @@ class _DetailsState extends State<Details> {
 
   saveToDatabase() {
     Provider.of<DataProvider>(context, listen: false).insertToDb(anime);
+    setState(() {
+      isFav = true;
+    });
   }
 
   deleteFromDatabase() {
     Provider.of<DataProvider>(context, listen: false).deleteFromDb(anime.id);
+    setState(() {
+      isFav = false;
+    });
   }
 
   getData() async {
