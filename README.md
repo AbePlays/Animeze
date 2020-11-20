@@ -18,9 +18,8 @@ Animeze is an app which shows information regarding Animes. Browse through the l
 - Jikan API
 - Flutter Spinkit
 
-Future updates will include : 
+Future updates will include :
 
-- Ability to mark anime(s) favorite
 - Connecting the app with a backend
 - Add a Dark Mode
 
