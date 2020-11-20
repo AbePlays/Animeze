@@ -16,6 +16,8 @@ Animeze is an app which shows information regarding Animes. Browse through the l
 
 - Flutter
 - Jikan API
+- Provider
+- Sqflite
 - Flutter Spinkit
 
 Future updates will include :
