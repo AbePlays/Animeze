@@ -27,12 +27,23 @@ class _DetailsState extends State<Details> {
   List characters = [];
 
   final dbHelper = DatabaseHelper.instance;
+  final globalKey = GlobalKey<ScaffoldState>();
+
+  toggleSnackBar(String message, Color bgColor) {
+    final sb = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(message),
+      backgroundColor: bgColor,
+    );
+    globalKey.currentState.showSnackBar(sb);
+  }
 
   saveToDatabase() {
     Provider.of<DataProvider>(context, listen: false).insertToDb(anime);
     setState(() {
       isFav = true;
     });
+    toggleSnackBar("Added to Favorites", Colors.green);
   }
 
   deleteFromDatabase() {
@@ -40,6 +51,7 @@ class _DetailsState extends State<Details> {
     setState(() {
       isFav = false;
     });
+    toggleSnackBar("Remove from Favorites", Colors.red);
   }
 
   getData() async {
@@ -100,6 +112,7 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: globalKey,
       body: SafeArea(
         top: false,
         child: isLoading
