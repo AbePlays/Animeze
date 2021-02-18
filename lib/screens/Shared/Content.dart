@@ -17,14 +17,16 @@ class _ContentState extends State<Content> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 200,
+      color: Colors.white,
       child: Stack(
         children: [
           Align(
             alignment: Alignment.bottomCenter,
             child: Card(
+              color: Colors.grey[50],
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
-              elevation: 1,
+              elevation: 2,
               child: Container(
                 width: MediaQuery.of(context).size.width * .9,
                 height: 150,
@@ -42,7 +44,7 @@ class _ContentState extends State<Content> {
                           Text(
                             widget.title,
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                            maxLines: 1,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
@@ -75,7 +77,9 @@ class _ContentState extends State<Content> {
                 borderRadius: BorderRadius.circular(10),
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/images/placeholder.png',
+                  fit: BoxFit.cover,
                   image: widget.imageUrl,
+                  height: 150,
                   width: 100,
                 )),
           ),

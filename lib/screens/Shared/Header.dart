@@ -33,7 +33,7 @@ class _HeaderState extends State<Header> {
           },
           child: CircleAvatar(
             backgroundColor:
-                widget.isBackgroundOn ? Colors.grey[200] : Colors.transparent,
+                widget.isBackgroundOn ? Colors.grey[100] : Colors.transparent,
             child: Text(
               widget.leftIconName,
               style: TextStyle(
@@ -54,7 +54,7 @@ class _HeaderState extends State<Header> {
                 onTap: widget.callbackFunction,
                 child: CircleAvatar(
                   backgroundColor: widget.isBackgroundOn
-                      ? Colors.grey[200]
+                      ? Colors.grey[100]
                       : Colors.transparent,
                   child: Text(
                     widget.rightIconName,

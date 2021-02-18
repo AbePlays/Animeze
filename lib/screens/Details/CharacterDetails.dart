@@ -56,7 +56,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                   children: [
                     Header(
                       leftIconName: 'arrow_back',
-                      title: "",
+                      title: "DETAILS",
                       rightIconName: "favorite_border",
                       isBackgroundOn: true,
                     ),
@@ -76,7 +76,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                                 child: FadeInImage.assetNetwork(
                                   placeholder: 'assets/images/placeholder.png',
                                   image: data['image_url'],
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -88,7 +88,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                             child: Text(
                               data['name'],
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                                  fontWeight: FontWeight.w600, fontSize: 30),
                             ),
                           ),
                           SizedBox(
@@ -97,10 +97,10 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                           Text(
                             "Nicknames",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.w600, fontSize: 20),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           names.length > 0
                               ? Wrap(
@@ -120,21 +120,23 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                                       fontSize: 15),
                                 ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Text(
                             "About",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.w600, fontSize: 20),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Text(
                             (data['about'].replaceAll("\\n", "\n"))
                                 .replaceAll('\n\r\n\n\r', '\n'),
                             style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 15),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                color: Colors.grey[600]),
                           )
                         ],
                       ),

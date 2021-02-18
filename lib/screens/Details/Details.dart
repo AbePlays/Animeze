@@ -51,7 +51,7 @@ class _DetailsState extends State<Details> {
     setState(() {
       isFav = false;
     });
-    toggleSnackBar("Remove from Favorites", Colors.red);
+    toggleSnackBar("Removed from Favorites", Colors.red);
   }
 
   getData() async {
@@ -156,8 +156,8 @@ class _DetailsState extends State<Details> {
                               top: 100,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
                                 ),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -182,7 +182,7 @@ class _DetailsState extends State<Details> {
     return Column(
       children: [
         ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
             child: FadeInImage.assetNetwork(
               placeholder: 'assets/images/placeholder.png',
               image: data['image_url'],
@@ -190,16 +190,16 @@ class _DetailsState extends State<Details> {
             )),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
             child: ListView(
-              padding: EdgeInsets.all(0),
+              padding: EdgeInsets.only(top: 5),
               children: [
                 Text(
                   data['title'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     height: 1,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     fontSize: 35,
                   ),
                 ),
@@ -212,7 +212,7 @@ class _DetailsState extends State<Details> {
                   style: TextStyle(
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w900,
-                      fontSize: 40,
+                      fontSize: 30,
                       color: Colors.grey),
                 ),
                 SizedBox(
@@ -298,7 +298,7 @@ class _DetailsState extends State<Details> {
                 ),
                 Text(
                   "Storyline",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                 ),
                 SizedBox(
                   height: 10,

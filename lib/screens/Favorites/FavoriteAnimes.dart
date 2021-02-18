@@ -1,5 +1,6 @@
 import 'package:animeze/model/AnimeModel.dart';
 import 'package:animeze/provider/DataProvider.dart';
+import 'package:animeze/screens/Details/Details.dart';
 import 'package:animeze/screens/Shared/Content.dart';
 import 'package:animeze/screens/Shared/Header.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _FavoriteAnimesState extends State<FavoriteAnimes> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.grey[200],
+          color: Colors.white,
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
@@ -66,12 +67,31 @@ class _FavoriteAnimesState extends State<FavoriteAnimes> {
                         itemCount: savedData.length,
                         itemBuilder: (BuildContext context, var index) {
                           // return Text(savedData[index].title);
-                          return Content(
-                            imageUrl: savedData[index].imageUrl,
-                            title: savedData[index].title,
-                            score: savedData[index].score,
-                            startDate: savedData[index].dateReleased,
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Details(
+                                    id: savedData[index].id,
+                                    episodes: '0',
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Content(
+                              imageUrl: savedData[index].imageUrl,
+                              title: savedData[index].title,
+                              score: savedData[index].score,
+                              startDate: savedData[index].dateReleased,
+                            ),
                           );
+                          // return Content(
+                          //   imageUrl: savedData[index].imageUrl,
+                          //   title: savedData[index].title,
+                          //   score: savedData[index].score,
+                          //   startDate: savedData[index].dateReleased,
+                          // );
                         },
                       ),
                     )

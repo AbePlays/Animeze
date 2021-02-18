@@ -136,18 +136,18 @@ class _HomeState extends State<Home> {
                   isBackgroundOn: true,
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Text(
                   "Find Anime, Manga\nand more...",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 buildSearch(context),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -221,6 +221,7 @@ class _HomeState extends State<Home> {
       tag: 'search',
       child: Material(
         child: TextField(
+          textCapitalization: TextCapitalization.words,
           onChanged: (value) {
             setState(() {
               query = value;
@@ -237,7 +238,7 @@ class _HomeState extends State<Home> {
             );
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(20),
+            contentPadding: EdgeInsets.all(15),
             prefixIcon: Icon(
               Icons.search,
               color: Colors.black,

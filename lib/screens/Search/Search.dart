@@ -48,8 +48,8 @@ class _SearchState extends State<Search> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(20),
-          color: Colors.grey[200],
+          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          color: Colors.white,
           child: Column(
             children: [
               Header(
@@ -96,7 +96,7 @@ class _SearchState extends State<Search> {
                         },
                         itemCount: results.isEmpty ? 0 : 10,
                       ),
-                    )
+                    ),
             ],
           ),
         ),
@@ -108,7 +108,9 @@ class _SearchState extends State<Search> {
     return Hero(
       tag: 'search',
       child: Material(
+        color: Colors.white,
         child: TextField(
+          textCapitalization: TextCapitalization.words,
           onChanged: (value) {
             setState(() {
               searchText = value;
@@ -118,13 +120,13 @@ class _SearchState extends State<Search> {
             handleSearch(searchText);
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(20),
+            contentPadding: EdgeInsets.all(15),
             prefixIcon: Icon(
               Icons.search,
               color: Colors.black,
             ),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: Colors.grey[50],
             hintText: "Search",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),

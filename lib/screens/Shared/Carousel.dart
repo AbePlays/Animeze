@@ -52,7 +52,7 @@ class _CarouselState extends State<Carousel> {
                 );
               },
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 child: FadeInImage.assetNetwork(
                   placeholder: 'assets/images/placeholder.png',
                   image: widget.list[index]['image_url'],
