@@ -119,7 +119,7 @@ class _DetailsState extends State<Details> {
         child: isLoading
             ? Center(
                 child: SpinKitThreeBounce(
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   size: 25.0,
                 ),
               )
@@ -163,7 +163,7 @@ class _DetailsState extends State<Details> {
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   height: MediaQuery.of(context).size.height,
-                                  color: Colors.white,
+                                  color: Theme.of(context).accentColor,
                                 ),
                               ),
                             ),

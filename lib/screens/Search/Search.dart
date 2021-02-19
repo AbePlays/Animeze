@@ -1,3 +1,4 @@
+import 'package:animeze/provider/ThemeProvider.dart';
 import 'package:animeze/screens/Shared/Header.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -5,6 +6,7 @@ import 'dart:convert' as convert;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:animeze/screens/Details/Details.dart';
 import 'package:animeze/screens/Shared/Content.dart';
+import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
   final String query;
@@ -43,13 +45,24 @@ class _SearchState extends State<Search> {
     handleSearch(widget.query);
   }
 
+  var outlineBorder;
+
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode =
+        Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
+
+    print("SEARCH:  , $isDarkMode");
+
+    outlineBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+      borderSide: BorderSide(color: Colors.transparent),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-          color: Colors.white,
           child: Column(
             children: [
               Header(
@@ -61,13 +74,13 @@ class _SearchState extends State<Search> {
               SizedBox(
                 height: 20,
               ),
-              buildSearch(),
+              buildSearch(context, isDarkMode),
               SizedBox(
                 height: 20,
               ),
               isLoading
                   ? SpinKitThreeBounce(
-                      color: Colors.black,
+                      color: Theme.of(context).primaryColor,
                       size: 25.0,
                     )
                   : Expanded(
@@ -104,11 +117,11 @@ class _SearchState extends State<Search> {
     );
   }
 
-  Hero buildSearch() {
+  Hero buildSearch(BuildContext context, bool isDarkMode) {
     return Hero(
       tag: 'search',
       child: Material(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: TextField(
           textCapitalization: TextCapitalization.words,
           onChanged: (value) {
@@ -123,23 +136,13 @@ class _SearchState extends State<Search> {
             contentPadding: EdgeInsets.all(15),
             prefixIcon: Icon(
               Icons.search,
-              color: Colors.black,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
             filled: true,
-            fillColor: Colors.grey[50],
             hintText: "Search",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
+            border: outlineBorder,
+            enabledBorder: outlineBorder,
+            focusedBorder: outlineBorder,
           ),
         ),
       ),

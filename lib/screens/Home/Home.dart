@@ -53,22 +53,31 @@ class _HomeState extends State<Home> {
     getTopAiringAnimes();
   }
 
+  var outlineBorder;
+
   @override
   Widget build(BuildContext context) {
+    final isDarkMode =
+        Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
+
+    outlineBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+      borderSide: BorderSide(color: Colors.transparent),
+    );
+
     return Scaffold(
       drawer: Drawer(
         child: ListView(
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: isDarkMode ? Colors.black : Colors.grey[200],
               ),
               child: Center(
                 child: Text(
                   'ANIMEZE',
                   style: TextStyle(
                     letterSpacing: 5,
-                    color: Colors.black,
                     fontSize: 25,
                   ),
                 ),
@@ -112,7 +121,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               leading: Icon(Icons.wb_sunny),
-              title: Text("Turn On Dark Mode"),
+              title: Text("Dark Mode"),
               trailing: ThemeWidget(),
             ),
             Divider(
@@ -146,7 +155,7 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: 20,
                 ),
-                buildSearch(context),
+                buildSearch(context, isDarkMode),
                 SizedBox(
                   height: 20,
                 ),
@@ -217,10 +226,11 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Hero buildSearch(BuildContext context) {
+  Hero buildSearch(BuildContext context, bool isDarkMode) {
     return Hero(
       tag: 'search',
       child: Material(
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: TextField(
           textCapitalization: TextCapitalization.words,
           onChanged: (value) {
@@ -242,23 +252,13 @@ class _HomeState extends State<Home> {
             contentPadding: EdgeInsets.all(15),
             prefixIcon: Icon(
               Icons.search,
-              color: Colors.black,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
             filled: true,
-            fillColor: Colors.grey[200],
             hintText: "Search",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              borderSide: BorderSide(color: Colors.white),
-            ),
+            border: outlineBorder,
+            enabledBorder: outlineBorder,
+            focusedBorder: outlineBorder,
           ),
         ),
       ),

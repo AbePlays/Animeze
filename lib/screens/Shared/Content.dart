@@ -5,6 +5,7 @@ class Content extends StatefulWidget {
   final String title;
   final String startDate;
   final num score;
+
   Content({this.imageUrl, this.title, this.score, this.startDate});
 
   @override
@@ -17,13 +18,12 @@ class _ContentState extends State<Content> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 200,
-      color: Colors.white,
       child: Stack(
         children: [
           Align(
             alignment: Alignment.bottomCenter,
             child: Card(
-              color: Colors.grey[50],
+              color: Theme.of(context).accentColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               elevation: 2,
@@ -53,7 +53,9 @@ class _ContentState extends State<Content> {
                           ),
                           Text(
                             "Score : ${widget.score.toString()}",
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
                           ),
                           SizedBox(
                             height: 5,

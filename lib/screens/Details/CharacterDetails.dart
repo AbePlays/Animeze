@@ -46,7 +46,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
         child: isLoading
             ? Center(
                 child: SpinKitThreeBounce(
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                   size: 25.0,
                 ),
               )
@@ -88,7 +88,9 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                             child: Text(
                               data['name'],
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 30),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 30,
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -97,7 +99,9 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                           Text(
                             "Nicknames",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 20),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
@@ -116,8 +120,9 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                               : Text(
                                   "N/A",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                  ),
                                 ),
                           SizedBox(
                             height: 10,
@@ -134,9 +139,9 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                             (data['about'].replaceAll("\\n", "\n"))
                                 .replaceAll('\n\r\n\n\r', '\n'),
                             style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                color: Colors.grey[600]),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                            ),
                           )
                         ],
                       ),

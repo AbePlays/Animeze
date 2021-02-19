@@ -41,7 +41,6 @@ class _FavoriteAnimesState extends State<FavoriteAnimes> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Colors.white,
           padding: EdgeInsets.all(20),
           child: Column(
             children: [

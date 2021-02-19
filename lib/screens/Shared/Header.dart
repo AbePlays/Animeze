@@ -1,4 +1,6 @@
+import 'package:animeze/provider/ThemeProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatefulWidget {
   final String leftIconName;
@@ -6,6 +8,7 @@ class Header extends StatefulWidget {
   final String rightIconName;
   final bool isBackgroundOn;
   final Function callbackFunction;
+
   Header(
       {this.leftIconName,
       this.title,
@@ -20,6 +23,9 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
+    final isDarkMode =
+        Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -32,21 +38,28 @@ class _HeaderState extends State<Header> {
             }
           },
           child: CircleAvatar(
-            backgroundColor:
-                widget.isBackgroundOn ? Colors.grey[100] : Colors.transparent,
+            backgroundColor: widget.isBackgroundOn
+                ? Theme.of(context).accentColor
+                : Colors.transparent,
             child: Text(
               widget.leftIconName,
               style: TextStyle(
-                  fontFamily: 'MaterialIcons',
-                  fontSize: 25,
-                  color: widget.isBackgroundOn ? Colors.black : Colors.white),
+                fontFamily: 'MaterialIcons',
+                fontSize: 25,
+                color: widget.isBackgroundOn
+                    ? (isDarkMode ? Colors.white : Colors.black)
+                    : Colors.white,
+              ),
             ),
           ),
         ),
         widget.title.isNotEmpty
             ? Text(
                 widget.title,
-                style: TextStyle(letterSpacing: 5, fontSize: 20),
+                style: TextStyle(
+                  letterSpacing: 5,
+                  fontSize: 20,
+                ),
               )
             : SizedBox.shrink(),
         widget.rightIconName.isNotEmpty
@@ -54,16 +67,17 @@ class _HeaderState extends State<Header> {
                 onTap: widget.callbackFunction,
                 child: CircleAvatar(
                   backgroundColor: widget.isBackgroundOn
-                      ? Colors.grey[100]
+                      ? Theme.of(context).accentColor
                       : Colors.transparent,
                   child: Text(
                     widget.rightIconName,
                     style: TextStyle(
-                        fontFamily: 'MaterialIcons',
-                        fontSize: 25,
-                        color: widget.isBackgroundOn
-                            ? Colors.black
-                            : Colors.white),
+                      fontFamily: 'MaterialIcons',
+                      fontSize: 25,
+                      color: widget.isBackgroundOn
+                          ? (isDarkMode ? Colors.white : Colors.black)
+                          : Colors.white,
+                    ),
                   ),
                 ),
               )
