@@ -61,25 +61,14 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                       isBackgroundOn: true,
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     Expanded(
                       child: ListView(
                         padding: EdgeInsets.all(0),
                         children: [
                           Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Container(
-                                width: 200.0,
-                                height: 200.0,
-                                child: FadeInImage.assetNetwork(
-                                  placeholder: 'assets/images/placeholder.png',
-                                  image: data['image_url'],
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                            child: Avatar(data: data),
                           ),
                           SizedBox(
                             height: 30,
@@ -89,18 +78,18 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                               data['name'],
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 30,
+                                fontSize: 25,
                               ),
                             ),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           Text(
                             "Nicknames",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                           SizedBox(
@@ -112,7 +101,10 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                                   children: names
                                       .map(
                                         (e) => Chip(
-                                          label: Text(e),
+                                          label: Text(
+                                            e,
+                                            style: TextStyle(fontSize: 12),
+                                          ),
                                         ),
                                       )
                                       .toList(),
@@ -130,7 +122,9 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                           Text(
                             "About",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 20),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
@@ -140,7 +134,7 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                                 .replaceAll('\n\r\n\n\r', '\n'),
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 15,
+                              fontSize: 13,
                             ),
                           )
                         ],
@@ -149,6 +143,51 @@ class _CharacterDetailsState extends State<CharacterDetails> {
                   ],
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class Avatar extends StatelessWidget {
+  const Avatar({
+    Key key,
+    @required this.data,
+  }) : super(key: key);
+
+  final data;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(110),
+      child: Container(
+        color: Theme.of(context).primaryColor,
+        child: Padding(
+          padding: EdgeInsets.all(5),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(105),
+            child: Container(
+              color: Theme.of(context).accentColor,
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Container(
+                    width: 200.0,
+                    height: 200.0,
+                    child: FadeInImage.assetNetwork(
+                      placeholder: 'assets/images/placeholder.png',
+                      image: data['image_url'],
+                      fit: BoxFit.cover,
+                      width: 200,
+                      height: 200,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

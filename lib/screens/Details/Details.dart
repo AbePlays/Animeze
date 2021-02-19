@@ -135,17 +135,18 @@ class _DetailsState extends State<Details> {
                         color: Color.fromRGBO(255, 255, 255, 0.3),
                         colorBlendMode: BlendMode.modulate),
                     Positioned(
-                        width: MediaQuery.of(context).size.width - 40,
-                        top: 50,
-                        left: 20,
-                        child: Header(
-                          leftIconName: "arrow_back",
-                          title: "",
-                          rightIconName: isFav ? "favorite" : "favorite_border",
-                          isBackgroundOn: false,
-                          callbackFunction:
-                              isFav ? deleteFromDatabase : saveToDatabase,
-                        )),
+                      width: MediaQuery.of(context).size.width - 40,
+                      top: 50,
+                      left: 20,
+                      child: Header(
+                        leftIconName: "arrow_back",
+                        title: "",
+                        rightIconName: isFav ? "favorite" : "favorite_border",
+                        isBackgroundOn: false,
+                        callbackFunction:
+                            isFav ? deleteFromDatabase : saveToDatabase,
+                      ),
+                    ),
                     Positioned(
                       top: 200,
                       child: Container(
@@ -201,11 +202,11 @@ class _DetailsState extends State<Details> {
                   style: TextStyle(
                     height: 1,
                     fontWeight: FontWeight.w600,
-                    fontSize: 35,
+                    fontSize: 30,
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Text(
                   data['score'].toString(),
@@ -213,11 +214,11 @@ class _DetailsState extends State<Details> {
                   style: TextStyle(
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w900,
-                      fontSize: 30,
+                      fontSize: 25,
                       color: Colors.grey),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 Table(
                   children: [
@@ -227,7 +228,7 @@ class _DetailsState extends State<Details> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
@@ -235,7 +236,7 @@ class _DetailsState extends State<Details> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
@@ -243,7 +244,7 @@ class _DetailsState extends State<Details> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
@@ -251,7 +252,7 @@ class _DetailsState extends State<Details> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold),
                       ),
                     ]),
@@ -273,23 +274,35 @@ class _DetailsState extends State<Details> {
                       Text(
                         data['duration'].toString().replaceAll('per', '/'),
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                       Text(
                         data['airing'] ? "Yes" : "No",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                       Text(
                         data['type'],
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                       Text(
                         widget.episodes,
                         textAlign: TextAlign.center,
                         maxLines: 1,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                     ])
                   ],
@@ -299,14 +312,17 @@ class _DetailsState extends State<Details> {
                 ),
                 Text(
                   "Storyline",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
                   data['synopsis'],
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: 13, height: 2),
                 ),
                 SizedBox(
                   height: 20,

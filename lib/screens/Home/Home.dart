@@ -150,7 +150,7 @@ class _HomeState extends State<Home> {
                 ),
                 Text(
                   "Find Anime, Manga\nand more...",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 SizedBox(
                   height: 20,
@@ -164,14 +164,16 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Text(
                       'Top Animes',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
                     ),
                     Text(
                       "More",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 12,
                         color: Colors.red,
                       ),
                     )
@@ -195,14 +197,16 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Text(
                       'Top Airing Animes',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
                     ),
                     Text(
                       "More",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 12,
                         color: Colors.red,
                       ),
                     )
@@ -249,7 +253,7 @@ class _HomeState extends State<Home> {
             );
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(15),
+            contentPadding: EdgeInsets.all(10),
             prefixIcon: Icon(
               Icons.search,
               color: isDarkMode ? Colors.white : Colors.black,

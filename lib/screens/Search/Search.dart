@@ -52,8 +52,6 @@ class _SearchState extends State<Search> {
     bool isDarkMode =
         Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
 
-    print("SEARCH:  , $isDarkMode");
-
     outlineBorder = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: Colors.transparent),
@@ -76,7 +74,7 @@ class _SearchState extends State<Search> {
               ),
               buildSearch(context, isDarkMode),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               isLoading
                   ? SpinKitThreeBounce(
@@ -133,7 +131,7 @@ class _SearchState extends State<Search> {
             handleSearch(searchText);
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(15),
+            contentPadding: EdgeInsets.all(10),
             prefixIcon: Icon(
               Icons.search,
               color: isDarkMode ? Colors.white : Colors.black,
