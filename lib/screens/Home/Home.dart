@@ -18,6 +18,7 @@ class _HomeState extends State<Home> {
   String query;
   List topAnimes = [];
   List topAiringAnimes = [];
+  bool isLoading = true;
 
   getTopAnimes() async {
     var url = 'https://api.jikan.moe/v3/top/anime/1/favorite';
@@ -39,6 +40,7 @@ class _HomeState extends State<Home> {
       var jsonResponse = convert.jsonDecode(response.body);
       setState(() {
         topAiringAnimes = jsonResponse['top'];
+        isLoading = false;
       });
     } catch (e) {
       print(e);
@@ -48,7 +50,11 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      isLoading = true;
+    });
     Provider.of<DataProvider>(context, listen: false).initProviderData();
+    Provider.of<ThemeProvider>(context, listen: false).initTheme();
     getTopAnimes();
     getTopAiringAnimes();
   }
@@ -64,6 +70,17 @@ class _HomeState extends State<Home> {
       borderRadius: BorderRadius.all(Radius.circular(15)),
       borderSide: BorderSide(color: Colors.transparent),
     );
+
+    if (isLoading) {
+      return Scaffold(
+        body: Center(
+          child: Text(
+            "ANIMEZE",
+            style: TextStyle(fontSize: 30, letterSpacing: 5),
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       drawer: Drawer(
