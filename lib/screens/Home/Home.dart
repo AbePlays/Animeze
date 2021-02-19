@@ -1,4 +1,5 @@
 import 'package:animeze/provider/DataProvider.dart';
+import 'package:animeze/provider/ThemeProvider.dart';
 import 'package:animeze/screens/Favorites/FavoriteAnimes.dart';
 import 'package:animeze/screens/Search/Search.dart';
 import 'package:animeze/screens/Shared/Carousel.dart';
@@ -112,7 +113,7 @@ class _HomeState extends State<Home> {
             ListTile(
               leading: Icon(Icons.wb_sunny),
               title: Text("Turn On Dark Mode"),
-              trailing: Switch(value: false, onChanged: null),
+              trailing: ThemeWidget(),
             ),
             Divider(
               height: 0,
@@ -262,5 +263,23 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+}
+
+class ThemeWidget extends StatelessWidget {
+  const ThemeWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return Switch(
+        value: themeProvider.isDarkMode,
+        onChanged: (val) {
+          final provider = Provider.of<ThemeProvider>(context, listen: false);
+          provider.toggleTheme(val);
+        });
   }
 }
