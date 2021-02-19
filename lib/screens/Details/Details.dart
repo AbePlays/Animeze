@@ -73,6 +73,7 @@ class _DetailsState extends State<Details> {
           title: data['title'],
           score: data['score'],
           dateReleased: data['aired']['from'].toString().substring(0, 10),
+          numberOfEpisodes: int.parse(widget.episodes),
         );
 
         for (var item in animeList) {

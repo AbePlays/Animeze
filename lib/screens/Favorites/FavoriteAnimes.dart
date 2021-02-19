@@ -74,7 +74,9 @@ class _FavoriteAnimesState extends State<FavoriteAnimes> {
                                 MaterialPageRoute(
                                   builder: (context) => Details(
                                     id: savedData[index].id,
-                                    episodes: '0',
+                                    episodes: savedData[index]
+                                        .numberOfEpisodes
+                                        .toString(),
                                   ),
                                 ),
                               );

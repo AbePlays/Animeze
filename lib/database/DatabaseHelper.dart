@@ -12,6 +12,7 @@ class DatabaseHelper {
   static final title = 'title';
   static final score = 'score';
   static final dateReleased = 'dateReleased';
+  static final numberOfEpisodes = 'numberOfEpisodes';
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -34,7 +35,7 @@ class DatabaseHelper {
 
   Future onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE $table ($id INTEGER PRIMARY KEY, $imageUrl TEXT, $title TEXT, $score REAL, $dateReleased TEXT)");
+        "CREATE TABLE $table ($id INTEGER PRIMARY KEY, $imageUrl TEXT, $title TEXT, $score REAL, $dateReleased TEXT, $numberOfEpisodes INTEGER)");
   }
 
   Future<int> insert(Map<String, dynamic> row) async {
