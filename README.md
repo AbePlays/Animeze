@@ -7,7 +7,7 @@
   <img src="screenshots/Search.png" width="200">
   <img src="screenshots/AnimeDetails.png" width="200">
   <img src="screenshots/AnimeDetails2.png" width="200">
-  <img src="screenshots/CharacterDetails.png" width="200">
+  <!-- <img src="screenshots/CharacterDetails.png" width="200"> -->
 </p>
 
 ## Overview
@@ -19,11 +19,11 @@ Animeze is an app which shows information regarding Animes. Browse through the l
 - Provider
 - Sqflite
 - Flutter Spinkit
+- Dark Mode Support
 
 Future updates will include :
 
 - Connecting the app with a backend
-- Add a Dark Mode
 
 ## Getting Started
 
