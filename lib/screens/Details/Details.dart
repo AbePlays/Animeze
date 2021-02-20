@@ -129,11 +129,13 @@ class _DetailsState extends State<Details> {
                 height: MediaQuery.of(context).size.height,
                 child: Stack(
                   children: [
-                    Image.network(data['image_url'],
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.contain,
-                        color: Color.fromRGBO(255, 255, 255, 0.3),
-                        colorBlendMode: BlendMode.modulate),
+                    Image.network(
+                      data['image_url'],
+                      width: MediaQuery.of(context).size.width,
+                      fit: BoxFit.contain,
+                      color: Color.fromRGBO(255, 255, 255, 0.3),
+                      colorBlendMode: BlendMode.modulate,
+                    ),
                     Positioned(
                       width: MediaQuery.of(context).size.width - 40,
                       top: 50,
@@ -147,8 +149,7 @@ class _DetailsState extends State<Details> {
                             isFav ? deleteFromDatabase : saveToDatabase,
                       ),
                     ),
-                    Positioned(
-                      top: 200,
+                    TweenAnimationBuilder(
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height - 200,
@@ -172,7 +173,21 @@ class _DetailsState extends State<Details> {
                           ],
                         ),
                       ),
-                    )
+                      tween: Tween<double>(
+                          begin: MediaQuery.of(context).size.height / 2,
+                          end: 200),
+                      duration: Duration(milliseconds: 600),
+                      builder:
+                          (BuildContext context, double val, Widget child) {
+                        return Positioned(
+                          top: val,
+                          child: Opacity(
+                            opacity: 200 / val,
+                            child: child,
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -184,12 +199,15 @@ class _DetailsState extends State<Details> {
     return Column(
       children: [
         ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            child: FadeInImage.assetNetwork(
-              placeholder: 'assets/images/placeholder.png',
-              image: data['image_url'],
-              width: MediaQuery.of(context).size.width / 3,
-            )),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+          child: FadeInImage.assetNetwork(
+            placeholder: 'assets/images/placeholder.png',
+            image: data['image_url'],
+            width: MediaQuery.of(context).size.width / 3,
+          ),
+        ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(top: 20, left: 20, right: 20),
@@ -212,99 +230,110 @@ class _DetailsState extends State<Details> {
                   data['score'].toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w900,
-                      fontSize: 25,
-                      color: Colors.grey),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 25,
+                    color: Colors.grey,
+                  ),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 Table(
                   children: [
-                    TableRow(children: [
-                      Text(
-                        'Length',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
+                    TableRow(
+                      children: [
+                        Text(
+                          'Length',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
                             color: Colors.grey,
                             fontSize: 13,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Airing',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Airing',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
                             color: Colors.grey,
                             fontSize: 13,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Type',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Type',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
                             color: Colors.grey,
                             fontSize: 13,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Episodes',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Episodes',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
                             color: Colors.grey,
                             fontSize: 13,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ]),
-                    TableRow(children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      )
-                    ]),
-                    TableRow(children: [
-                      Text(
-                        data['duration'].toString().replaceAll('per', '/'),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        data['airing'] ? "Yes" : "No",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      Text(
-                        data['type'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      Text(
-                        widget.episodes,
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
-                    ])
+                        SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        Text(
+                          data['duration'].toString().replaceAll('per', '/'),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          data['airing'] ? "Yes" : "No",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          data['type'],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          widget.episodes,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 SizedBox(

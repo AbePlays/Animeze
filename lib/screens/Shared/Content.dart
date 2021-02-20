@@ -25,7 +25,8 @@ class _ContentState extends State<Content> {
             child: Card(
               color: Theme.of(context).accentColor,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
               elevation: 2,
               child: Container(
                 width: MediaQuery.of(context).size.width * .9,
@@ -46,7 +47,9 @@ class _ContentState extends State<Content> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
@@ -62,7 +65,9 @@ class _ContentState extends State<Content> {
                           ),
                           Text(
                             "Date Released : ${widget.startDate?.isEmpty ?? true ? 'N/A' : widget.startDate.substring(0, 10)}",
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
                           ),
                         ],
                       ),
@@ -72,18 +77,29 @@ class _ContentState extends State<Content> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 30,
-            left: 30,
+          TweenAnimationBuilder(
+            duration: Duration(milliseconds: 600),
+            tween: Tween<double>(begin: 0, end: 1),
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/placeholder.png',
-                  fit: BoxFit.cover,
-                  image: widget.imageUrl,
-                  height: 150,
-                  width: 100,
-                )),
+              borderRadius: BorderRadius.circular(10),
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/images/placeholder.png',
+                fit: BoxFit.cover,
+                image: widget.imageUrl,
+                height: 150,
+                width: 100,
+              ),
+            ),
+            builder: (BuildContext context, double val, Widget child) {
+              return Positioned(
+                bottom: val * 30,
+                left: val * 30,
+                child: Opacity(
+                  opacity: val,
+                  child: child,
+                ),
+              );
+            },
           ),
         ],
       ),

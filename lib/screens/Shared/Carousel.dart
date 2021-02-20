@@ -37,6 +37,7 @@ class _CarouselState extends State<Carousel> {
           itemBuilder: (BuildContext context, var index) {
             return GestureDetector(
               onTap: () {
+                FocusScope.of(context).requestFocus(new FocusNode());
                 Navigator.push(
                   context,
                   MaterialPageRoute(

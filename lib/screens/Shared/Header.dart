@@ -34,6 +34,7 @@ class _HeaderState extends State<Header> {
             if (widget.leftIconName == 'arrow_back') {
               Navigator.pop(context);
             } else {
+              FocusScope.of(context).requestFocus(new FocusNode());
               Scaffold.of(context).openDrawer();
             }
           },

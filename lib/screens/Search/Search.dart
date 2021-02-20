@@ -58,57 +58,64 @@ class _SearchState extends State<Search> {
     );
 
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            children: [
-              Header(
-                leftIconName: "arrow_back",
-                title: "ANIMEZE",
-                rightIconName: "",
-                isBackgroundOn: true,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              buildSearch(context, isDarkMode),
-              SizedBox(
-                height: 15,
-              ),
-              isLoading
-                  ? SpinKitThreeBounce(
-                      color: Theme.of(context).primaryColor,
-                      size: 25.0,
-                    )
-                  : Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (BuildContext context, var index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Details(
-                                    id: results[index]['mal_id'],
-                                    episodes:
-                                        results[index]['episodes'].toString(),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: SafeArea(
+          child: Container(
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              children: [
+                Header(
+                  leftIconName: "arrow_back",
+                  title: "ANIMEZE",
+                  rightIconName: "",
+                  isBackgroundOn: true,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                buildSearch(context, isDarkMode),
+                SizedBox(
+                  height: 15,
+                ),
+                isLoading
+                    ? SpinKitThreeBounce(
+                        color: Theme.of(context).primaryColor,
+                        size: 25.0,
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                          itemBuilder: (BuildContext context, var index) {
+                            return GestureDetector(
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(new FocusNode());
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Details(
+                                      id: results[index]['mal_id'],
+                                      episodes:
+                                          results[index]['episodes'].toString(),
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            child: Content(
-                              imageUrl: results[index]['image_url'],
-                              score: results[index]['score'],
-                              startDate: results[index]['start_date'],
-                              title: results[index]['title'],
-                            ),
-                          );
-                        },
-                        itemCount: results.isEmpty ? 0 : 10,
+                                );
+                              },
+                              child: Content(
+                                imageUrl: results[index]['image_url'],
+                                score: results[index]['score'],
+                                startDate: results[index]['start_date'],
+                                title: results[index]['title'],
+                              ),
+                            );
+                          },
+                          itemCount: results.isEmpty ? 0 : 10,
+                        ),
                       ),
-                    ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -128,6 +135,7 @@ class _SearchState extends State<Search> {
             });
           },
           onEditingComplete: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
             handleSearch(searchText);
           },
           decoration: InputDecoration(
